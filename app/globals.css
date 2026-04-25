@@ -1,0 +1,645 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Viridian Core — premium dark software aesthetic.
+  Palette (5 colors total):
+    1. Background (near-black graphite)
+    2. Surface / card (elevated charcoal)
+    3. Foreground (off-white)
+    4. Muted foreground (graphite gray)
+    5. Accent (restrained viridian green)
+*/
+
+:root {
+  /* Core surfaces */
+  --background: oklch(0.145 0.005 200);
+  --foreground: oklch(0.96 0.005 200);
+
+  --card: oklch(0.18 0.006 200);
+  --card-foreground: oklch(0.96 0.005 200);
+
+  --popover: oklch(0.16 0.006 200);
+  --popover-foreground: oklch(0.96 0.005 200);
+
+  /* Viridian accent */
+  --primary: oklch(0.72 0.12 165);
+  --primary-foreground: oklch(0.12 0.01 200);
+
+  --secondary: oklch(0.22 0.008 200);
+  --secondary-foreground: oklch(0.96 0.005 200);
+
+  --muted: oklch(0.22 0.008 200);
+  --muted-foreground: oklch(0.65 0.01 200);
+
+  --accent: oklch(0.72 0.12 165);
+  --accent-foreground: oklch(0.12 0.01 200);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.28 0.008 200);
+  --input: oklch(0.28 0.008 200);
+  --ring: oklch(0.72 0.12 165);
+
+  --radius: 0.5rem;
+
+  /* Brand-specific tokens */
+  --viridian: oklch(0.72 0.12 165);
+  --viridian-soft: oklch(0.55 0.09 165);
+  --graphite: oklch(0.22 0.008 200);
+  --graphite-soft: oklch(0.28 0.008 200);
+}
+
+.dark {
+  /* same as :root — Viridian Core is dark-first */
+  --background: oklch(0.145 0.005 200);
+  --foreground: oklch(0.96 0.005 200);
+  --card: oklch(0.18 0.006 200);
+  --card-foreground: oklch(0.96 0.005 200);
+  --popover: oklch(0.16 0.006 200);
+  --popover-foreground: oklch(0.96 0.005 200);
+  --primary: oklch(0.72 0.12 165);
+  --primary-foreground: oklch(0.12 0.01 200);
+  --secondary: oklch(0.22 0.008 200);
+  --secondary-foreground: oklch(0.96 0.005 200);
+  --muted: oklch(0.22 0.008 200);
+  --muted-foreground: oklch(0.65 0.01 200);
+  --accent: oklch(0.72 0.12 165);
+  --accent-foreground: oklch(0.12 0.01 200);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.28 0.008 200);
+  --input: oklch(0.28 0.008 200);
+  --ring: oklch(0.72 0.12 165);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), 'Geist', 'Geist Fallback', system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), 'Geist Mono', 'Geist Mono Fallback', monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-viridian: var(--viridian);
+  --color-viridian-soft: var(--viridian-soft);
+  --color-graphite: var(--graphite);
+  --color-graphite-soft: var(--graphite-soft);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  ::selection {
+    background-color: color-mix(in oklch, var(--viridian) 35%, transparent);
+    color: var(--foreground);
+  }
+}
+
+/* ---------------------------------------------------------
+   Utility layer: flip card, subtle reveal, grid backdrop
+   --------------------------------------------------------- */
+@layer utilities {
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  .hero-video-directional {
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in oklch, var(--background) 82%, transparent) 0%,
+        color-mix(in oklch, var(--background) 68%, transparent) 22%,
+        color-mix(in oklch, var(--background) 38%, transparent) 46%,
+        color-mix(in oklch, var(--background) 14%, transparent) 72%,
+        transparent 100%
+      ),
+      radial-gradient(
+        76% 70% at 20% 44%,
+        color-mix(in oklch, var(--background) 36%, transparent) 0%,
+        transparent 68%
+      );
+  }
+
+  .hero-video-center-shape {
+    background:
+      radial-gradient(
+        52% 44% at 68% 38%,
+        color-mix(in oklch, white 6%, transparent) 0%,
+        transparent 48%
+      ),
+      radial-gradient(
+        82% 70% at 56% 52%,
+        transparent 0%,
+        transparent 44%,
+        color-mix(in oklch, var(--background) 16%, transparent) 100%
+      );
+    mix-blend-mode: soft-light;
+    opacity: 0.72;
+  }
+
+  .hero-video-cinematic-floor {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in oklch, var(--background) 42%, transparent) 0%,
+        transparent 24%,
+        transparent 54%,
+        color-mix(in oklch, var(--background) 72%, transparent) 100%
+      );
+  }
+
+  .hero-video-mobile-floor {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in oklch, var(--background) 34%, transparent) 0%,
+        color-mix(in oklch, var(--background) 8%, transparent) 34%,
+        color-mix(in oklch, var(--background) 58%, transparent) 100%
+      );
+  }
+
+  .hero-video-vignette {
+    background:
+      radial-gradient(
+        118% 82% at 52% 22%,
+        transparent 0%,
+        transparent 48%,
+        color-mix(in oklch, var(--background) 22%, transparent) 74%,
+        color-mix(in oklch, var(--background) 66%, transparent) 100%
+      ),
+      radial-gradient(
+        120% 76% at 50% -6%,
+        transparent 0%,
+        color-mix(in oklch, var(--background) 16%, transparent) 58%,
+        color-mix(in oklch, var(--background) 54%, transparent) 100%
+      );
+  }
+
+  .hero-video-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    mix-blend-mode: soft-light;
+    opacity: 0.042;
+  }
+
+  .hero-video-glow {
+    background:
+      radial-gradient(
+        42% 36% at 74% 36%,
+        color-mix(in oklch, var(--viridian) 18%, transparent) 0%,
+        color-mix(in oklch, var(--viridian) 8%, transparent) 38%,
+        transparent 74%
+      ),
+      radial-gradient(
+        34% 42% at 18% 46%,
+        color-mix(in oklch, var(--viridian) 8%, transparent) 0%,
+        transparent 72%
+      );
+    filter: blur(22px);
+    opacity: 0.5;
+  }
+
+  .starfield-star {
+    box-shadow: 0 0 10px color-mix(in oklch, white 30%, transparent);
+    opacity: calc(var(--star-opacity, 0.35) * 0.6);
+    animation: star-pulse var(--star-duration, 6s) ease-in-out infinite;
+    animation-delay: var(--star-delay, 0s);
+  }
+
+  .starfield-bright-star {
+    box-shadow:
+      0 0 8px color-mix(in oklch, white 54%, transparent),
+      0 0 18px color-mix(in oklch, var(--viridian) 18%, transparent);
+    opacity: 0.34;
+    animation: bright-star-glint var(--bright-star-duration, 7s) ease-in-out infinite;
+    animation-delay: var(--bright-star-delay, 0s);
+  }
+
+  .starfield-bright-star::before,
+  .starfield-bright-star::after {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, color-mix(in oklch, white 64%, transparent), transparent);
+    content: "";
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+  }
+
+  .starfield-bright-star::before {
+    width: 15px;
+    height: 1px;
+  }
+
+  .starfield-bright-star::after {
+    width: 12px;
+    height: 1px;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .starfield-sky {
+    background-image:
+      radial-gradient(circle, color-mix(in oklch, white 64%, var(--viridian) 10%) 0 1px, transparent 1.4px),
+      radial-gradient(circle, color-mix(in oklch, white 42%, transparent) 0 0.8px, transparent 1.2px),
+      radial-gradient(circle, color-mix(in oklch, var(--viridian) 34%, white 34%) 0 1px, transparent 1.35px);
+    background-position:
+      12px 18px,
+      76px 54px,
+      132px 96px;
+    background-size:
+      180px 180px,
+      132px 132px,
+      236px 236px;
+    opacity: 0.34;
+  }
+
+  .starfield-sky-fine {
+    background-image:
+      radial-gradient(circle, color-mix(in oklch, white 52%, transparent) 0 0.7px, transparent 1.1px),
+      radial-gradient(circle, color-mix(in oklch, white 34%, transparent) 0 0.55px, transparent 0.95px);
+    background-position:
+      34px 42px,
+      92px 18px;
+    background-size:
+      92px 92px,
+      148px 148px;
+    opacity: 0.22;
+    mask-image: radial-gradient(ellipse at center, black 0%, black 70%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 0%, black 70%, transparent 100%);
+  }
+
+  .starfield-sky-mobile-extra {
+    background-image:
+      radial-gradient(circle, color-mix(in oklch, white 58%, transparent) 0 0.75px, transparent 1.05px),
+      radial-gradient(circle, color-mix(in oklch, white 46%, var(--viridian) 8%) 0 0.9px, transparent 1.2px),
+      radial-gradient(circle, color-mix(in oklch, white 32%, transparent) 0 0.55px, transparent 0.9px);
+    background-position:
+      18px 26px,
+      54px 72px,
+      88px 12px;
+    background-size:
+      72px 72px,
+      118px 118px,
+      46px 46px;
+    opacity: 0.4;
+  }
+
+  .starfield-shooting-star {
+    height: 1px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklch, white 82%, var(--viridian) 18%) 0%,
+      color-mix(in oklch, white 46%, transparent) 38%,
+      transparent 100%
+    );
+    box-shadow: 0 0 14px color-mix(in oklch, white 18%, transparent);
+    opacity: 0;
+    transform: rotate(var(--trail-rotation, -18deg));
+    transform-origin: left center;
+    animation: shooting-star var(--trail-duration, 10s) linear infinite;
+    animation-delay: var(--trail-delay, 0s);
+  }
+
+  .starfield-shooting-star::before {
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: color-mix(in oklch, white 74%, var(--viridian) 26%);
+    box-shadow: 0 0 12px color-mix(in oklch, var(--viridian) 18%, white 42%);
+    content: "";
+    transform: translateY(-50%);
+  }
+
+  .starfield-mask-projects {
+    mask-image:
+      linear-gradient(
+        180deg,
+        black 0%,
+        black 34%,
+        color-mix(in srgb, black 78%, transparent) 52%,
+        color-mix(in srgb, black 62%, transparent) 100%
+      );
+    -webkit-mask-image:
+      linear-gradient(
+        180deg,
+        black 0%,
+        black 34%,
+        color-mix(in srgb, black 78%, transparent) 52%,
+        color-mix(in srgb, black 62%, transparent) 100%
+      );
+  }
+
+  .starfield-mask-services {
+    mask-image:
+      linear-gradient(
+        180deg,
+        black 0%,
+        black 30%,
+        color-mix(in srgb, black 82%, transparent) 50%,
+        color-mix(in srgb, black 68%, transparent) 100%
+      );
+    -webkit-mask-image:
+      linear-gradient(
+        180deg,
+        black 0%,
+        black 30%,
+        color-mix(in srgb, black 82%, transparent) 50%,
+        color-mix(in srgb, black 68%, transparent) 100%
+      );
+  }
+
+  .starfield-mask-approach {
+    mask-image:
+      radial-gradient(
+        52% 64% at 72% 50%,
+        transparent 0%,
+        transparent 52%,
+        black 72%
+      );
+    -webkit-mask-image:
+      radial-gradient(
+        52% 64% at 72% 50%,
+        transparent 0%,
+        transparent 52%,
+        black 72%
+      );
+  }
+
+  .starfield-mask-cta {
+    mask-image:
+      radial-gradient(
+        76% 72% at 50% 50%,
+        transparent 0%,
+        transparent 42%,
+        black 66%
+      );
+    -webkit-mask-image:
+      radial-gradient(
+        76% 72% at 50% 50%,
+        transparent 0%,
+        transparent 42%,
+        black 66%
+      );
+  }
+
+  /* Hairline grid backdrop for approach/services */
+  .grid-backdrop {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklch, var(--border) 55%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklch, var(--border) 55%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 64px 64px;
+    mask-image: radial-gradient(
+      ellipse at center,
+      black 30%,
+      transparent 75%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black 30%,
+      transparent 75%
+    );
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 700ms ease, transform 700ms ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 767px) {
+    .hero-video-directional {
+      background:
+        linear-gradient(
+          90deg,
+          color-mix(in oklch, var(--background) 68%, transparent) 0%,
+          color-mix(in oklch, var(--background) 44%, transparent) 44%,
+          color-mix(in oklch, var(--background) 18%, transparent) 100%
+        ),
+        radial-gradient(
+          100% 72% at 18% 38%,
+          color-mix(in oklch, var(--background) 26%, transparent) 0%,
+          transparent 70%
+        );
+    }
+
+    .hero-video-center-shape {
+      background:
+        radial-gradient(
+          74% 54% at 58% 34%,
+          color-mix(in oklch, white 5%, transparent) 0%,
+          transparent 48%
+        ),
+        radial-gradient(
+          104% 74% at 52% 52%,
+          transparent 0%,
+          transparent 50%,
+          color-mix(in oklch, var(--background) 14%, transparent) 100%
+        );
+      opacity: 0.54;
+    }
+
+    .hero-video-vignette {
+      background:
+        radial-gradient(
+          124% 86% at 50% 18%,
+          transparent 0%,
+          transparent 56%,
+          color-mix(in oklch, var(--background) 18%, transparent) 80%,
+          color-mix(in oklch, var(--background) 46%, transparent) 100%
+        ),
+        radial-gradient(
+          125% 90% at 50% 0%,
+          transparent 0%,
+          color-mix(in oklch, var(--background) 12%, transparent) 68%,
+          color-mix(in oklch, var(--background) 34%, transparent) 100%
+        );
+    }
+
+    .hero-video-grain {
+      background-size: 260px 260px;
+      opacity: 0.022;
+    }
+
+    .hero-video-glow {
+      background:
+        radial-gradient(
+          70% 42% at 74% 28%,
+          color-mix(in oklch, var(--viridian) 11%, transparent) 0%,
+          transparent 70%
+        );
+      filter: blur(18px);
+      opacity: 0.34;
+    }
+
+    .starfield-star {
+      opacity: calc(var(--star-opacity, 0.35) * 0.86);
+    }
+
+    .starfield-sky {
+      background-position:
+        10px 14px,
+        44px 58px,
+        88px 28px;
+      background-size:
+        112px 112px,
+        86px 86px,
+        156px 156px;
+      opacity: 0.42;
+    }
+
+    .starfield-sky-fine {
+      background-size:
+        46px 46px,
+        76px 76px;
+      opacity: 0.36;
+    }
+
+    .starfield-sky-mobile-extra {
+      opacity: 0.48;
+    }
+
+    .starfield-bright-star {
+      opacity: 0.46;
+    }
+
+    .starfield-shooting-star {
+      height: 1px;
+      box-shadow: 0 0 10px color-mix(in oklch, white 22%, transparent);
+    }
+
+    .starfield-shooting-star::before {
+      width: 3px;
+      height: 3px;
+    }
+  }
+}
+
+@keyframes star-pulse {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: calc(var(--star-opacity, 0.35) * 0.5);
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: var(--star-opacity, 0.35);
+  }
+}
+
+@keyframes bright-star-glint {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: scale(0.86);
+  }
+  42% {
+    opacity: 0.38;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.86;
+    transform: scale(1.24);
+  }
+  58% {
+    opacity: 0.38;
+    transform: scale(1);
+  }
+}
+
+@keyframes bright-star-cross {
+  0%,
+  42%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.55;
+  }
+  58% {
+    opacity: 0;
+  }
+}
+
+.starfield-bright-star::before,
+.starfield-bright-star::after {
+  animation: bright-star-cross var(--bright-star-duration, 7s) ease-in-out infinite;
+  animation-delay: var(--bright-star-delay, 0s);
+}
+
+@keyframes shooting-star {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(var(--trail-rotation, -18deg));
+  }
+  8% {
+    opacity: 0.65;
+  }
+  30% {
+    opacity: 0.28;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--trail-x, -9vw), var(--trail-y, 4vw), 0)
+      rotate(var(--trail-rotation, -18deg));
+  }
+}
