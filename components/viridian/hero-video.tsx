@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 type HeroVideoBackgroundProps = {
   desktopSrc: string
   mobileSrc: string
-  mobilePosterSrc?: string
+  posterSrc?: string
   breakpoint?: number
   className?: string
 }
@@ -50,7 +50,7 @@ function HeroVideoOverlays({ isMobile }: { isMobile: boolean }) {
 export function HeroVideoBackground({
   desktopSrc,
   mobileSrc,
-  mobilePosterSrc,
+  posterSrc,
   breakpoint = 768,
   className,
 }: HeroVideoBackgroundProps) {
@@ -91,11 +91,11 @@ export function HeroVideoBackground({
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className ?? ""}`}
       aria-hidden="true"
     >
-      {mobilePosterSrc ? (
+      {posterSrc ? (
         <img
-          src={mobilePosterSrc}
+          src={posterSrc}
           alt=""
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 md:hidden ${
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
             videoReady ? "opacity-0" : "opacity-100"
           }`}
           loading="eager"
@@ -117,7 +117,7 @@ export function HeroVideoBackground({
           loop
           playsInline
           preload="metadata"
-          poster={isMobile ? mobilePosterSrc : undefined}
+          poster={posterSrc}
           onCanPlay={() => setVideoReady(true)}
           controls={false}
           controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"

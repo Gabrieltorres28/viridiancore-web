@@ -14,7 +14,7 @@ export function Hero() {
         className="z-0"
         desktopSrc="/videos/videohero-web.mp4"
         mobileSrc="/videos/videoheromobile-web.mp4"
-        mobilePosterSrc="/images/hero-mobile-poster.webp"
+        posterSrc="/images/foto-precargavideo.webp"
       />
 
       {/* Content */}
