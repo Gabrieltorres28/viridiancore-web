@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 type HeroVideoBackgroundProps = {
   desktopSrc: string
   mobileSrc: string
-  posterSrc?: string
+  mobilePosterSrc?: string
   breakpoint?: number
   className?: string
 }
@@ -50,11 +50,12 @@ function HeroVideoOverlays({ isMobile }: { isMobile: boolean }) {
 export function HeroVideoBackground({
   desktopSrc,
   mobileSrc,
-  posterSrc,
+  mobilePosterSrc,
   breakpoint = 768,
   className,
 }: HeroVideoBackgroundProps) {
   const [viewportTarget, setViewportTarget] = useState<ViewportTarget>(null)
+  const [videoReady, setVideoReady] = useState(false)
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(`(min-width: ${breakpoint}px)`)
@@ -81,11 +82,27 @@ export function HeroVideoBackground({
 
   const isMobile = viewportTarget === "mobile"
 
+  useEffect(() => {
+    setVideoReady(false)
+  }, [activeSrc])
+
   return (
     <div
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className ?? ""}`}
       aria-hidden="true"
     >
+      {mobilePosterSrc ? (
+        <img
+          src={mobilePosterSrc}
+          alt=""
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 md:hidden ${
+            videoReady ? "opacity-0" : "opacity-100"
+          }`}
+          loading="eager"
+          decoding="async"
+        />
+      ) : null}
+
       {activeSrc ? (
         <video
           key={activeSrc}
@@ -100,7 +117,8 @@ export function HeroVideoBackground({
           loop
           playsInline
           preload="metadata"
-          poster={posterSrc}
+          poster={isMobile ? mobilePosterSrc : undefined}
+          onCanPlay={() => setVideoReady(true)}
           controls={false}
           controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
           disablePictureInPicture
