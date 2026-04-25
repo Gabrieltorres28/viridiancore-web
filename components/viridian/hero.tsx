@@ -58,8 +58,7 @@ export function Hero() {
         </div>
 
         <p className="mt-8 max-w-xl text-sm text-foreground/55">
-          Next.js, bases de datos, despliegue, dominio, correo corporativo y
-          paneles internos.
+          Sistemas web a medida: automatización de procesos, gestión interna, presencia digital completa. Todo listo para operar.
         </p>
 
         <div className="mt-16 flex items-center gap-6 border-t border-border/40 pt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/50 md:mt-24">
