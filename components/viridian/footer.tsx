@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Instagram } from "lucide-react"
+import { Instagram, Linkedin } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 
 const FOOTER_LINKS = [
@@ -49,10 +49,7 @@ export function Footer() {
           </div>
 
           {/* Social */}
-          <div className="md:col-span-3">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/50">
-              Redes
-            </span>
+          <div className="flex flex-col gap-3 md:col-span-3 md:items-start">
             <a
               href="https://www.instagram.com/viridian.core/"
               target="_blank"
@@ -64,6 +61,18 @@ export function Footer() {
                 <Instagram className="h-4 w-4" />
               </span>
               @viridian.core
+            </a>
+            <a
+              href="https://www.linkedin.com/in/gabriel-torres-4b652a284"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn de Gabriel Torres"
+              className="inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-viridian"
+            >
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border/60 bg-card/40 text-foreground/70 transition-colors hover:border-viridian/40 hover:text-viridian">
+                <Linkedin className="h-4 w-4" />
+              </span>
+              Gabriel Torres
             </a>
           </div>
         </div>

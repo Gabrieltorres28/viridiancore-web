@@ -129,7 +129,7 @@
 }
 
 /* ---------------------------------------------------------
-   Utility layer: flip card, subtle reveal, grid backdrop
+   Utility layer: flip card, grid backdrop
    --------------------------------------------------------- */
 @layer utilities {
   .perspective-1200 {
@@ -456,16 +456,6 @@
     );
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 700ms ease, transform 700ms ease;
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
   @media (max-width: 767px) {
     .hero-video-directional {
       background:
