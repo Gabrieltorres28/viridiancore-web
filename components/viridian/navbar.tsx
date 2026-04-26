@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { href: "#proyectos", label: "Proyectos" },
   { href: "#que-hacemos", label: "Qué hacemos" },
   { href: "#enfoque", label: "Enfoque" },
-  { href: "#sistemas-privados", label: "Demos privadas" },
+  { href: "#sistemas-privados", label: "Productos" },
 ]
 
 export function Navbar() {

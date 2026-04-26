@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -12,6 +13,10 @@ export type Project = {
   description: string
   tech: string
   href: string
+  logo: {
+    src: string
+    alt: string
+  }
 }
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -19,7 +24,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <div
-      className="group perspective-1200 h-[500px] w-full sm:h-[460px]"
+      className="group perspective-1200 h-[520px] w-full md:h-[620px] lg:h-[660px]"
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
       onFocusCapture={() => setFlipped(true)}
@@ -88,7 +93,7 @@ export function ProjectCard({ project }: { project: Project }) {
             className="pointer-events-none absolute inset-0 opacity-60 bg-[radial-gradient(80%_60%_at_50%_0%,color-mix(in_oklch,var(--viridian)_14%,transparent)_0%,transparent_60%)]"
             aria-hidden="true"
           />
-          <div className="relative flex h-full flex-col justify-between p-5 md:p-8">
+          <div className="relative flex h-full flex-col justify-between gap-6 p-5 md:p-8">
             <div>
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
                 {project.index} — {project.type}
@@ -99,6 +104,16 @@ export function ProjectCard({ project }: { project: Project }) {
               <p className="mt-3 text-sm leading-relaxed text-foreground/75 md:mt-5 md:text-base">
                 {project.description}
               </p>
+              <div className="mt-6 flex h-32 items-center justify-center px-2 md:h-36">
+                <Image
+                  src={project.logo.src}
+                  alt={project.logo.alt}
+                  width={280}
+                  height={160}
+                  className="h-full w-auto max-w-full object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.28)]"
+                  sizes="280px"
+                />
+              </div>
             </div>
 
             <div>

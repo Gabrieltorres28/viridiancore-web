@@ -133,7 +133,7 @@ export function Approach() {
                       para uso real.
                     </p>
                     <p className="mt-3 border-l border-viridian/50 pl-3 font-mono text-[11px] uppercase tracking-[0.16em] text-viridian/80">
-                      demo privada disponible bajo consulta
+                      demo disponible bajo consulta
                     </p>
                   </div>
                 </div>

@@ -53,7 +53,7 @@ export function FinalCta() {
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-foreground/50 lg:text-right">
-                Respuesta directa · Sin formularios
+                Respuesta directa 
               </span>
             </div>
           </div>

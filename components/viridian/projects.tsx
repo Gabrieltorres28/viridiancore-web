@@ -11,6 +11,10 @@ const PROJECTS: Project[] = [
       "Sitio institucional educativo para presentar información académica, identidad institucional y canales de contacto de forma clara y accesible.",
     tech: "Next.js · Tailwind · institución educativa",
     href: "https://isipp.com.ar",
+    logo: {
+      src: "/images/logo-isipp.png",
+      alt: "Logo Instituto Superior de Informática",
+    },
   },
   {
     index: "02",
@@ -20,19 +24,27 @@ const PROJECTS: Project[] = [
       "Presencia comercial profesional para una empresa de soluciones integrales.",
     description:
       "Sitio institucional para empresa de soluciones integrales, con presencia comercial profesional, dominio propio, estructura clara de servicios y base para comunicación corporativa.",
-    tech: "Next.js · Tailwind · dominio propio",
+    tech: "Next.js · Tailwind · firma corporativa",
     href: "https://blessed.com.ar",
+    logo: {
+      src: "/images/logo-blessed.png",
+      alt: "Logo Blessed Soluciones Integrales",
+    },
   },
   {
     index: "03",
     title: "Municipalidad de El Alcázar",
-    type: "Portal municipal experimental",
+    type: "Portal municipal en desarrollo",
     teaser:
       "Base pública para organizar accesos útiles y mejorar la presencia digital municipal.",
     description:
-      "Portal municipal experimental orientado a mejorar la presencia digital, organizar accesos útiles y servir como base para futuros módulos de digitalización pública.",
+      "Portal municipal orientado a mejorar la presencia digital, organizar accesos útiles y servir como base para futuros módulos de digitalización pública.",
     tech: "Next.js · Tailwind · portal público",
     href: "https://municipalidad-elalcazar.vercel.app",
+    logo: {
+      src: "/images/logoalcazar.png",
+      alt: "Logo Municipalidad de El Alcázar",
+    },
   },
 ]
 
@@ -57,8 +69,7 @@ export function Projects() {
             </h2>
           </div>
           <p className="max-w-md text-pretty text-sm leading-relaxed text-foreground/65 md:text-base">
-            Una selección breve de proyectos públicos. No incluye sistemas
-            internos con datos privados ni accesos administrativos.
+              Sitios reales, publicados y preparados para operar como carta de presentación digital de cada organización. Son proyectos con distintos objetivos, pero todos con foco en la claridad, la utilidad y la identidad de cada cliente.
           </p>
         </div>
 

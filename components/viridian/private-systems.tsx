@@ -1,15 +1,15 @@
-import { BarChart3, KeyRound, MessageCircle, ShieldCheck, Users } from "lucide-react"
+import { FileText, Building2, Store, Landmark, Bot, BarChart3, KeyRound, MessageCircle, ShieldCheck, Users, Shield } from "lucide-react"
 import { SectionStarfield } from "./section-starfield"
 
 const WHATSAPP_URL =
   "https://wa.me/543751471708?text=Hola%2C%20quiero%20consultar%20por%20un%20sitio%20web%20o%20sistema%20para%20mi%20negocio."
 
 const ITEMS = [
-  { label: "Paneles administrativos", icon: BarChart3 },
-  { label: "Gestión de clientes, trámites, caja o stock", icon: Users },
-  { label: "Roles de usuario y permisos", icon: KeyRound },
-  { label: "Reportes e historial de operaciones", icon: ShieldCheck },
-  { label: "Demos guiadas sin exponer datos reales", icon: MessageCircle },
+  { label: "Sistema PyME: clientes, ventas, caja y stock", icon: Store },
+  { label: "Sistema Gestor Previsional: trámites y jubilaciones", icon: FileText },
+  { label: "Sistema municipal: transparencia, reclamos y gestión interna", icon: Landmark },
+  { label: "Paneles privados para administradores, reportes.", icon: BarChart3 },
+  { label: "Demos controladas sin exponer datos reales", icon: ShieldCheck },
 ]
 
 export function PrivateSystems() {
@@ -23,17 +23,16 @@ export function PrivateSystems() {
       <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 md:px-10 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-7">
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
-            / 005 — Demos privadas
+            / 005 — Productos digitales
           </span>
           <h2 className="mt-4 text-balance text-3xl font-medium leading-[1.08] tracking-tight text-foreground md:text-5xl">
-            Sistemas internos y demos privadas
+            Sistemas web para operar mejor, vender más y controlar tu negocio
           </h2>
           <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-foreground/70 md:text-lg">
-            También desarrollamos sistemas de gestión internos que no se
-            exponen públicamente porque pueden contener datos sensibles,
-            usuarios reales o lógica operativa privada. En esos casos,
-            presentamos el trabajo mediante capturas controladas, videos de
-            recorrido o demos privadas bajo consulta.
+            Desarrollamos sistemas digitales para PyMEs, comercios, instituciones y municipios: 
+            gestión de clientes, caja, stock, trámites, reportes, usuarios y paneles administrativos.
+            Son soluciones privadas, adapatables a cada operación y pensadas para reemplazar planillas,
+            papeles y procesos desordenados
           </p>
           <a
             href={WHATSAPP_URL}
@@ -42,7 +41,7 @@ export function PrivateSystems() {
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-6 py-3.5 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_32px_-8px_var(--viridian)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
           >
             <MessageCircle className="h-4 w-4" />
-            Solicitar demo privada
+            Consultar sistema para mi negocio
           </a>
         </div>
 
