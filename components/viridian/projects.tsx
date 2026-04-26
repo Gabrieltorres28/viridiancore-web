@@ -4,17 +4,6 @@ import { SectionStarfield } from "./section-starfield"
 const PROJECTS: Project[] = [
   {
     index: "01",
-    title: "Municipalidad de El Alcázar",
-    type: "Portal municipal experimental",
-    teaser:
-      "Base pública para organizar accesos útiles y mejorar la presencia digital municipal.",
-    description:
-      "Portal municipal experimental orientado a mejorar la presencia digital, organizar accesos útiles y servir como base para futuros módulos de digitalización pública.",
-    tech: "Next.js · Tailwind · portal público",
-    href: "https://municipalidad-elalcazar.vercel.app",
-  },
-  {
-    index: "02",
     title: "Instituto Superior de Informática",
     type: "Sitio educativo",
     teaser: "Sitio institucional para comunicar información académica y canales de contacto.",
@@ -24,7 +13,7 @@ const PROJECTS: Project[] = [
     href: "https://isipp.com.ar",
   },
   {
-    index: "03",
+    index: "02",
     title: "Blessed Soluciones Integrales",
     type: "Sitio corporativo",
     teaser:
@@ -33,6 +22,17 @@ const PROJECTS: Project[] = [
       "Sitio institucional para empresa de soluciones integrales, con presencia comercial profesional, dominio propio, estructura clara de servicios y base para comunicación corporativa.",
     tech: "Next.js · Tailwind · dominio propio",
     href: "https://blessed.com.ar",
+  },
+  {
+    index: "03",
+    title: "Municipalidad de El Alcázar",
+    type: "Portal municipal experimental",
+    teaser:
+      "Base pública para organizar accesos útiles y mejorar la presencia digital municipal.",
+    description:
+      "Portal municipal experimental orientado a mejorar la presencia digital, organizar accesos útiles y servir como base para futuros módulos de digitalización pública.",
+    tech: "Next.js · Tailwind · portal público",
+    href: "https://municipalidad-elalcazar.vercel.app",
   },
 ]
 

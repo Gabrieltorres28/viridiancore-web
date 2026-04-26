@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Instagram } from "lucide-react"
 import { BrandLogo } from "./brand-logo"
 
 const FOOTER_LINKS = [
@@ -52,7 +53,18 @@ export function Footer() {
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/50">
               Redes
             </span>
-            <p className="mt-5 text-sm text-foreground/60">Próximamente</p>
+            <a
+              href="https://www.instagram.com/viridian.core/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram de Viridian Core"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-foreground/75 transition-colors hover:text-viridian"
+            >
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border/60 bg-card/40 text-foreground/70 transition-colors hover:border-viridian/40 hover:text-viridian">
+                <Instagram className="h-4 w-4" />
+              </span>
+              @viridian.core
+            </a>
           </div>
         </div>
 

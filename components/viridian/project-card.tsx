@@ -19,7 +19,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <div
-      className="group perspective-1200 h-[420px] w-full md:h-[460px]"
+      className="group perspective-1200 h-[500px] w-full sm:h-[460px]"
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
       onFocusCapture={() => setFlipped(true)}
@@ -88,21 +88,21 @@ export function ProjectCard({ project }: { project: Project }) {
             className="pointer-events-none absolute inset-0 opacity-60 bg-[radial-gradient(80%_60%_at_50%_0%,color-mix(in_oklch,var(--viridian)_14%,transparent)_0%,transparent_60%)]"
             aria-hidden="true"
           />
-          <div className="relative flex h-full flex-col justify-between p-7 md:p-8">
+          <div className="relative flex h-full flex-col justify-between p-5 md:p-8">
             <div>
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
                 {project.index} — {project.type}
               </span>
-              <h3 className="mt-4 text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+              <h3 className="mt-3 text-xl font-medium tracking-tight text-foreground md:mt-4 md:text-3xl">
                 {project.title}
               </h3>
-              <p className="mt-5 text-sm leading-relaxed text-foreground/75 md:text-base">
+              <p className="mt-3 text-sm leading-relaxed text-foreground/75 md:mt-5 md:text-base">
                 {project.description}
               </p>
             </div>
 
             <div>
-              <div className="mb-5 border-t border-border/60 pt-5">
+              <div className="mb-4 border-t border-border/60 pt-4 md:mb-5 md:pt-5">
                 <span className="block font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/50">
                   Stack · Notas
                 </span>
@@ -110,22 +110,22 @@ export function ProjectCard({ project }: { project: Project }) {
                   {project.tech}
                 </p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="grid grid-cols-2 gap-3">
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
                   tabIndex={flipped ? 0 : -1}
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-5 py-3 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_28px_-8px_var(--viridian)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-4 py-3 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_28px_-8px_var(--viridian)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
                 >
                   Ver proyecto
-                  <ArrowUpRight className="h-4 w-4" />
+                  <ArrowUpRight className="h-4 w-4 shrink-0" />
                 </a>
                 <button
                   type="button"
                   onClick={() => setFlipped(false)}
                   tabIndex={flipped ? 0 : -1}
-                  className="inline-flex items-center justify-center rounded-md border border-border/70 bg-background/40 px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-viridian/50 hover:text-viridian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
+                  className="inline-flex items-center justify-center rounded-md border border-border/70 bg-background/40 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-viridian/50 hover:text-viridian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
                 >
                   Volver
                 </button>
