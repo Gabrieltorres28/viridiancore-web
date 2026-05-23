@@ -5,6 +5,7 @@ import { BrandLogo } from "./brand-logo"
 const FOOTER_LINKS = [
   { href: "#inicio", label: "Inicio" },
   { href: "#proyectos", label: "Proyectos" },
+  { href: "#validacion", label: "Validación" },
   { href: "#que-hacemos", label: "Qué hacemos" },
   { href: "#enfoque", label: "Enfoque" },
   { href: "#sistemas-privados", label: "Demos privadas" },
@@ -83,7 +84,7 @@ export function Footer() {
             reservados.
           </p>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/45">
-            Web · Sistemas · Gestión
+            Sistemas · Operación · Gestión
           </p>
         </div>
       </div>

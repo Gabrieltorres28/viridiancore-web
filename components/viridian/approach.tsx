@@ -44,7 +44,7 @@ export function Approach() {
           {/* LEFT — copy */}
           <div className="lg:col-span-7">
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
-              / 004 — Enfoque
+              / 005 — Enfoque
             </span>
             <h2 className="mt-4 text-balance text-3xl font-medium leading-[1.08] tracking-tight text-foreground md:text-5xl lg:text-6xl">
               El problema no es el esfuerzo.{" "}
@@ -58,9 +58,7 @@ export function Approach() {
                 errores.
               </p>
               <p>
-                Viridian Core construye sitios, sistemas y paneles internos
-                para ordenar procesos, publicar información y dar seguimiento
-                real al trabajo diario.
+                Viridian Core construye sistemas de gestión, herramientas internas y plataformas digitales para ordenar procesos, centralizar datos y dar seguimiento real al trabajo diario.
               </p>
             </div>
 
@@ -129,8 +127,7 @@ export function Approach() {
                       Output
                     </span>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/72">
-                      Sitios web, paneles internos y sistemas de gestión listos
-                      para uso real.
+                      Sistemas de gestión, paneles internos y presencia digital profesional listos para uso real.
                     </p>
                     <p className="mt-3 border-l border-viridian/50 pl-3 font-mono text-[11px] uppercase tracking-[0.16em] text-viridian/80">
                       demo disponible bajo consulta

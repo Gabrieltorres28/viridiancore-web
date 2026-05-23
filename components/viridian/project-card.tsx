@@ -2,150 +2,197 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Check, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export type Project = {
   index: string
   title: string
+  category: "system" | "institutional"
   type: string
-  teaser: string
+  status: string
+  badge: string
   description: string
-  tech: string
+  features: string[]
+  tags?: string[]
+  cta: string
   href: string
-  logo: {
+  featured?: boolean
+  image?: {
+    src: string
+    alt: string
+  }
+  imageLight?: {
     src: string
     alt: string
   }
 }
 
-export function ProjectCard({ project }: { project: Project }) {
-  const [flipped, setFlipped] = useState(false)
+export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
+  const [imageFailed, setImageFailed] = useState(false)
+  const [lightImageFailed, setLightImageFailed] = useState(false)
+  const hasImage = Boolean(project.image?.src) && !imageFailed
+  const hasLightImage = Boolean(project.imageLight?.src) && !lightImageFailed
+  const visualTags = project.tags?.length ? project.tags : [project.badge, project.status]
 
   return (
-    <div
-      className="group perspective-1200 h-[520px] w-full md:h-[620px] lg:h-[660px]"
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-      onFocusCapture={() => setFlipped(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) {
-          setFlipped(false)
-        }
-      }}
+    <article
+      className={cn(
+        "group relative flex h-full flex-col overflow-hidden rounded-lg border border-border/60 bg-card/85 shadow-[0_24px_80px_-56px_rgba(0,0,0,0.9)] transition-all duration-300 hover:-translate-y-1 hover:border-viridian/45 hover:shadow-[0_32px_96px_-64px_var(--viridian)]",
+        compact && "bg-card/70",
+        project.featured && "lg:col-span-2",
+      )}
     >
       <div
+        className="pointer-events-none absolute inset-0 opacity-[0.26] [background-image:radial-gradient(color-mix(in_oklch,var(--viridian)_18%,transparent)_1px,transparent_1px)] [background-size:22px_22px]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-viridian/60 to-transparent opacity-70"
+        aria-hidden="true"
+      />
+
+      <div
         className={cn(
-          "relative h-full w-full rounded-lg transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] preserve-3d",
-          flipped && "rotate-y-180",
+          "relative overflow-hidden border-b border-border/55 bg-background/55",
+          compact ? "h-48" : project.featured ? "aspect-[2/1] min-h-64 md:aspect-[2/1]" : "h-56 md:h-64",
         )}
       >
-        {/* FRONT */}
-        <div className="absolute inset-0 backface-hidden overflow-hidden rounded-lg border border-border/60 bg-card">
-          {/* Subtle inner grid/pattern */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(color-mix(in_oklch,var(--viridian)_18%,transparent)_1px,transparent_1px)] [background-size:22px_22px]"
-            aria-hidden="true"
-          />
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-viridian/60 to-transparent"
-            aria-hidden="true"
-          />
+        {hasImage ? (
+          <>
+            <Image
+              src={project.image!.src}
+              alt={project.image!.alt}
+              fill
+              sizes={project.featured ? "(min-width: 1280px) 1180px, (min-width: 1024px) 92vw, 100vw" : compact ? "(min-width: 1024px) 33vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
+              className={cn(
+                "project-image-dark opacity-92 transition duration-500 group-hover:scale-[1.015] group-hover:opacity-100",
+                project.featured ? "object-contain p-3 md:p-5" : "object-cover",
+                hasLightImage && "project-image-dark-with-light",
+              )}
+              onError={() => setImageFailed(true)}
+            />
+            {hasLightImage ? (
+              <Image
+                src={project.imageLight!.src}
+                alt={project.imageLight!.alt}
+                fill
+                sizes={project.featured ? "(min-width: 1280px) 1180px, (min-width: 1024px) 92vw, 100vw" : compact ? "(min-width: 1024px) 33vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
+                className={cn("project-image-light opacity-0 transition duration-500 group-hover:scale-[1.015]", project.featured ? "object-contain p-3 md:p-5" : "object-cover")}
+                onError={() => setLightImageFailed(true)}
+              />
+            ) : null}
+          </>
+        ) : (
+          <ProjectMockup title={project.title} type={project.type} compact={compact} />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-card/92 via-card/10 to-transparent" aria-hidden="true" />
+        <div className="absolute left-4 top-4 flex flex-wrap gap-2 md:left-5 md:top-5">
+          {visualTags.map((tag, index) => (
+            <span
+              key={tag}
+              className={cn(
+                "rounded-full border bg-background/70 px-3 py-1 text-[11px] uppercase tracking-[0.18em] backdrop-blur-md",
+                index === 0
+                  ? "border-viridian/35 font-medium text-viridian"
+                  : "border-border/70 text-foreground/70",
+              )}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
 
-          <div className="relative flex h-full flex-col justify-between p-7 md:p-8">
-            <div className="flex items-start justify-between">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
-                {project.index}
-              </span>
-              <span className="rounded-full border border-border/70 bg-background/50 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-foreground/65">
-                {project.type}
-              </span>
-            </div>
-
-            <div>
-              <h3 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-                {project.title}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-foreground/65 md:text-base">
-                {project.teaser}
-              </p>
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-foreground/50">
-              <button
-                type="button"
-                onClick={() => setFlipped(true)}
-                tabIndex={flipped ? -1 : 0}
-                className="inline-flex items-center gap-2 rounded-md border border-border/70 bg-background/50 px-3 py-2 text-xs text-foreground/70 transition-colors hover:border-viridian/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
-                aria-label={`Ver detalles del proyecto ${project.title}`}
-              >
-                <span className="h-1 w-1 rounded-full bg-viridian" />
-                Ver detalles
-              </button>
-              <ArrowUpRight className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-viridian" />
-            </div>
-          </div>
+      <div className={cn("relative flex flex-1 flex-col p-6", compact ? "md:p-6" : "md:p-7", project.featured && "md:p-8")}>
+        <div className="flex items-start justify-between gap-4">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
+            {project.index}
+          </span>
+          <span className="text-right text-xs uppercase tracking-[0.16em] text-foreground/45">
+            {project.type}
+          </span>
         </div>
 
-        {/* BACK */}
-        <div className="absolute inset-0 rotate-y-180 backface-hidden overflow-hidden rounded-lg border border-viridian/25 bg-gradient-to-b from-card to-background">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-60 bg-[radial-gradient(80%_60%_at_50%_0%,color-mix(in_oklch,var(--viridian)_14%,transparent)_0%,transparent_60%)]"
-            aria-hidden="true"
-          />
-          <div className="relative flex h-full flex-col justify-between gap-6 p-5 md:p-8">
-            <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
-                {project.index} — {project.type}
-              </span>
-              <h3 className="mt-3 text-xl font-medium tracking-tight text-foreground md:mt-4 md:text-3xl">
-                {project.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/75 md:mt-5 md:text-base">
-                {project.description}
-              </p>
-              <div className="mt-6 flex h-32 items-center justify-center px-2 md:h-36">
-                <Image
-                  src={project.logo.src}
-                  alt={project.logo.alt}
-                  width={280}
-                  height={160}
-                  className="h-full w-auto max-w-full object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.28)]"
-                  sizes="280px"
-                />
-              </div>
-            </div>
+        <h3 className={cn("mt-5 font-medium leading-tight tracking-tight text-foreground", compact ? "text-2xl" : project.featured ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl")}>
+          {project.title}
+        </h3>
+        <p className={cn("mt-4 text-sm leading-relaxed text-foreground/68 md:text-base", project.featured && "max-w-3xl md:text-lg")}>
+          {project.description}
+        </p>
 
-            <div>
-              <div className="mb-4 border-t border-border/60 pt-4 md:mb-5 md:pt-5">
-                <span className="block font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/50">
-                  Stack · Notas
+        <div className="mt-6 border-t border-border/55 pt-5">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/45">
+            Funcionalidades principales
+          </span>
+          <ul className={cn("mt-4 grid gap-2.5 sm:grid-cols-2", project.featured && "lg:grid-cols-4")}>
+            {project.features.map((feature) => (
+              <li key={feature} className="flex items-start gap-2.5 text-sm leading-snug text-foreground/76">
+                <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-viridian/35 bg-viridian/10 text-viridian">
+                  <Check className="h-2.5 w-2.5" strokeWidth={3} />
                 </span>
-                <p className="mt-2 text-sm text-foreground/80">
-                  {project.tech}
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  tabIndex={flipped ? 0 : -1}
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-4 py-3 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_28px_-8px_var(--viridian)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
-                >
-                  Ver proyecto
-                  <ArrowUpRight className="h-4 w-4 shrink-0" />
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setFlipped(false)}
-                  tabIndex={flipped ? 0 : -1}
-                  className="inline-flex items-center justify-center rounded-md border border-border/70 bg-background/40 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-viridian/50 hover:text-viridian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian"
-                >
-                  Volver
-                </button>
-              </div>
-            </div>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-7 flex flex-1 items-end">
+          <a
+            href={project.href}
+            target={project.href.startsWith("http") ? "_blank" : undefined}
+            rel={project.href.startsWith("http") ? "noreferrer" : undefined}
+            className="group/cta inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-viridian px-5 py-3 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_28px_-8px_var(--viridian)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian sm:w-auto"
+          >
+            {project.cta}
+            {project.href.startsWith("http") ? (
+              <ExternalLink className="h-4 w-4 shrink-0 transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
+            ) : (
+              <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
+            )}
+          </a>
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function ProjectMockup({ title, type, compact }: { title: string; type: string; compact: boolean }) {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-background">
+      <div
+        className="absolute inset-0 bg-[radial-gradient(80%_70%_at_50%_0%,color-mix(in_oklch,var(--viridian)_24%,transparent)_0%,transparent_62%),linear-gradient(135deg,rgba(255,255,255,0.06),transparent_35%,rgba(255,255,255,0.03))]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 [background-image:linear-gradient(to_right,color-mix(in_oklch,var(--border)_70%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklch,var(--border)_70%,transparent)_1px,transparent_1px)] [background-size:42px_42px] opacity-45"
+        aria-hidden="true"
+      />
+      <div className={cn("relative w-[82%] rounded-lg border border-border/70 bg-card/70 p-4 shadow-2xl backdrop-blur-sm", compact ? "max-w-sm" : "max-w-md")}>
+        <div className="flex items-center justify-between border-b border-border/60 pb-3">
+          <div className="flex gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-viridian/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-foreground/25" />
+            <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
+          </div>
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/45">
+            Sistema real
+          </span>
+        </div>
+        <div className="mt-4 grid gap-3">
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-viridian">{type}</span>
+            <p className="mt-2 text-base font-medium leading-tight text-foreground md:text-lg">{title}</p>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            <span className="h-16 rounded-md border border-border/60 bg-background/70" />
+            <span className="h-16 rounded-md border border-border/60 bg-background/45" />
+            <span className="h-16 rounded-md border border-border/60 bg-background/55" />
+          </div>
+          <div className="space-y-2">
+            <span className="block h-2 rounded-full bg-foreground/20" />
+            <span className="block h-2 w-4/5 rounded-full bg-foreground/12" />
+            <span className="block h-2 w-2/3 rounded-full bg-viridian/25" />
           </div>
         </div>
       </div>

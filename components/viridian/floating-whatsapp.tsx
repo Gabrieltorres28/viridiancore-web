@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 const WHATSAPP_URL =
-  "https://wa.me/543751471708?text=Hola%2C%20quiero%20consultar%20por%20un%20sitio%20web%20o%20sistema%20para%20mi%20negocio."
+  "https://wa.me/543751471708?text=Hola%2C%20quiero%20consultar%20por%20un%20sistema%20de%20gesti%C3%B3n%20o%20software%20operativo%20para%20mi%20negocio."
 
 export function FloatingWhatsapp() {
   return (

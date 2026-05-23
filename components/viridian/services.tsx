@@ -12,31 +12,31 @@ type Service = {
 const SERVICES: Service[] = [
   {
     index: "01",
-    title: "Sitios institucionales",
+    title: "Sistemas de gestión",
     description:
-      "Presencia digital seria para empresas, instituciones y organismos. Estructura clara, contenido ordenado y estética alineada con la marca.",
-    icon: Building2,
-  },
-  {
-    index: "02",
-    title: "Sistemas a medida",
-    description:
-      "Sistemas de gestión para procesos internos: clientes, trámites, caja, stock, permisos, reportes y paneles administrativos.",
+      "Software operativo para clientes, ventas, caja, stock, deudas, repartos, permisos, reportes y paneles administrativos.",
     icon: Cpu,
   },
   {
-    index: "03",
-    title: "Digitalización de procesos",
+    index: "02",
+    title: "Automatización operativa",
     description:
       "Pasamos tareas manuales a flujos digitales: formularios, registros, integraciones, notificaciones e historial de operaciones.",
     icon: Workflow,
   },
   {
-    index: "04",
-    title: "Producción y despliegue",
+    index: "03",
+    title: "Plataformas para instituciones",
     description:
-      "Dominio, despliegue en Vercel, bases de datos, correo corporativo y configuración técnica para publicar con una base estable.",
+      "Herramientas internas y portales para organizar información, trámites, comunicación pública y procesos administrativos.",
     icon: Network,
+  },
+  {
+    index: "04",
+    title: "Presencia digital profesional",
+    description:
+      "Sitios institucionales y landing corporativas cuando el negocio necesita presentar servicios, validar confianza y publicar información clara.",
+    icon: Building2,
   },
 ]
 
@@ -48,7 +48,6 @@ export function Services() {
     >
       <SectionStarfield variant="services" />
 
-      {/* Subtle grid backdrop */}
       <div
         className="pointer-events-none absolute inset-0 z-0 grid-backdrop opacity-50"
         aria-hidden="true"
@@ -57,14 +56,13 @@ export function Services() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         <div className="max-w-3xl">
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
-            / 003 — Qué hacemos
+            / 004 — Qué hacemos
           </span>
           <h2 className="mt-4 text-balance text-3xl font-medium leading-[1.1] tracking-tight text-foreground md:text-5xl">
-            Servicios concretos para publicar y operar.
+            Sistemas reales para ordenar operaciones, datos y decisiones.
           </h2>
           <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-foreground/65">
-            Trabajamos sobre necesidades frecuentes de PyMEs, instituciones y
-            municipios: presencia web, sistemas internos y procesos digitales.
+            Trabajamos con PyMEs, instituciones y municipios que necesitan sistemas de gestión, software operativo, automatización y soluciones digitales para empresas con uso real.
           </p>
         </div>
 
@@ -76,7 +74,6 @@ export function Services() {
                 key={service.index}
                 className="group relative flex flex-col justify-between gap-10 bg-card p-8 transition-colors duration-500 hover:bg-card/70 md:p-10"
               >
-                {/* top viridian accent bar */}
                 <span
                   className="pointer-events-none absolute left-0 top-0 h-px w-0 bg-viridian transition-all duration-500 group-hover:w-full"
                   aria-hidden="true"

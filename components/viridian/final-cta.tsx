@@ -2,7 +2,7 @@ import { MessageCircle, ArrowUpRight } from "lucide-react"
 import { SectionStarfield } from "./section-starfield"
 
 const WHATSAPP_URL =
-  "https://wa.me/543751471708?text=Hola%2C%20quiero%20consultar%20por%20un%20sitio%20web%20o%20sistema%20para%20mi%20negocio."
+  "https://wa.me/543751471708?text=Hola%2C%20quiero%20consultar%20por%20un%20sistema%20de%20gesti%C3%B3n%20o%20software%20operativo%20para%20mi%20negocio."
 
 export function FinalCta() {
   return (
@@ -29,15 +29,14 @@ export function FinalCta() {
           <div className="relative flex flex-col gap-10 p-10 md:p-16 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
-                / 006 — Contacto
+                / 007 — Contacto
               </span>
               <h2 className="mt-4 text-balance text-3xl font-medium leading-[1.08] tracking-tight text-foreground md:text-5xl">
                 Si tu negocio necesita ordenar procesos, ya podemos{" "}
                 <span className="text-viridian">definir el próximo paso.</span>
               </h2>
               <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-foreground/70 md:text-lg">
-                Conversemos sobre tu sitio web, sistema de gestión o proceso
-                interno y evaluemos qué conviene construir primero.
+                Conversemos sobre tu sistema de gestión, herramienta interna o proceso operativo. Si necesitás presencia digital profesional, también podemos integrarla como parte de la solución.
               </p>
             </div>
 

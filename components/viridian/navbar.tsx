@@ -5,10 +5,12 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { BrandLogo } from "./brand-logo"
+import { ThemeToggle } from "./theme-toggle"
 
 const NAV_LINKS = [
   { href: "#inicio", label: "Inicio" },
   { href: "#proyectos", label: "Proyectos" },
+  { href: "#validacion", label: "Validación" },
   { href: "#que-hacemos", label: "Qué hacemos" },
   { href: "#enfoque", label: "Enfoque" },
   { href: "#sistemas-privados", label: "Productos" },
@@ -50,7 +52,6 @@ export function Navbar() {
           <BrandLogo priority />
         </Link>
 
-        {/* Desktop nav */}
         <nav
           className="hidden items-center gap-1 md:flex"
           aria-label="Navegación principal"
@@ -64,22 +65,24 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <ThemeToggle />
         </nav>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/60 bg-card/30 text-foreground md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/60 bg-card/30 text-foreground"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile menu */}
       <div
         id="mobile-menu"
         className={cn(
