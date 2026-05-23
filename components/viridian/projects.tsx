@@ -14,6 +14,11 @@ const MANAGEMENT_PROJECTS: Project[] = [
     badge: "Sistema vendido",
     description:
       "Sistema operativo real para distribuidoras y repartos, orientado a gestionar clientes, entregas, deudas, stock, movimientos y operaciones diarias desde una herramienta centralizada.",
+    image: {
+      src: "/images/sistema-reparto.png",
+      alt: "Sistema para repartos y distribuidoras desarrollado por Viridian Core",
+    },
+    imageFit: "contain",
     features: [
       "Gestión de clientes",
       "Gestión de entregas",
@@ -36,6 +41,11 @@ const MANAGEMENT_PROJECTS: Project[] = [
     badge: "Sistema vendido",
     description:
       "Solución adaptada a un negocio real, orientada a reemplazar cuadernos, WhatsApp desordenado y planillas dispersas por una herramienta centralizada para operar mejor.",
+    image: {
+      src: "/images/sistema-pyme-imagen.png",
+      alt: "Sistema operativo para PyME local desarrollado por Viridian Core",
+    },
+    imageFit: "contain",
     features: [
       "Clientes",
       "Operaciones",
@@ -61,6 +71,11 @@ const INSTITUTIONAL_PROJECTS: Project[] = [
     badge: "Proyecto vendido",
     description:
       "Sitio institucional profesional para empresa de servicios industriales, pensado para mejorar presentación comercial, confianza y presencia online.",
+    image: {
+      src: "/images/logo-blessed.png",
+      alt: "Logo de Blessed Soluciones Integrales",
+    },
+    imageFit: "contain",
     features: [
       "Landing corporativa",
       "Dominio profesional",
@@ -80,6 +95,11 @@ const INSTITUTIONAL_PROJECTS: Project[] = [
     badge: "Institucional",
     description:
       "Web institucional para entidad educativa, desarrollada para ordenar información pública, mejorar presencia digital y comunicar de forma profesional.",
+    image: {
+      src: "/images/logo-isipp.png",
+      alt: "Logo de ISIPP",
+    },
+    imageFit: "contain",
     features: [
       "Estructura institucional",
       "Páginas informativas",
@@ -99,6 +119,11 @@ const INSTITUTIONAL_PROJECTS: Project[] = [
     badge: "Publicado",
     description:
       "Portal institucional orientado a comunicación pública, presencia digital territorial y validación de soluciones digitales para municipios.",
+    image: {
+      src: "/images/logoalcazar.png",
+      alt: "Logo de la Municipalidad de El Alcázar",
+    },
+    imageFit: "contain",
     features: [
       "Diseño institucional",
       "Información pública",

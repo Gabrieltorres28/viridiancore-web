@@ -18,11 +18,8 @@ export type Project = {
   cta: string
   href: string
   featured?: boolean
+  imageFit?: "cover" | "contain"
   image?: {
-    src: string
-    alt: string
-  }
-  imageLight?: {
     src: string
     alt: string
   }
@@ -30,9 +27,7 @@ export type Project = {
 
 export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
   const [imageFailed, setImageFailed] = useState(false)
-  const [lightImageFailed, setLightImageFailed] = useState(false)
   const hasImage = Boolean(project.image?.src) && !imageFailed
-  const hasLightImage = Boolean(project.imageLight?.src) && !lightImageFailed
   const visualTags = project.tags?.length ? project.tags : [project.badge, project.status]
 
   return (
@@ -67,21 +62,10 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
               sizes={project.featured ? "(min-width: 1280px) 1180px, (min-width: 1024px) 92vw, 100vw" : compact ? "(min-width: 1024px) 33vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
               className={cn(
                 "project-image-dark opacity-92 transition duration-500 group-hover:scale-[1.015] group-hover:opacity-100",
-                project.featured ? "object-contain p-3 md:p-5" : "object-cover",
-                hasLightImage && "project-image-dark-with-light",
+                project.imageFit === "contain" ? "object-contain p-3 md:p-5" : "object-cover",
               )}
               onError={() => setImageFailed(true)}
             />
-            {hasLightImage ? (
-              <Image
-                src={project.imageLight!.src}
-                alt={project.imageLight!.alt}
-                fill
-                sizes={project.featured ? "(min-width: 1280px) 1180px, (min-width: 1024px) 92vw, 100vw" : compact ? "(min-width: 1024px) 33vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
-                className={cn("project-image-light opacity-0 transition duration-500 group-hover:scale-[1.015]", project.featured ? "object-contain p-3 md:p-5" : "object-cover")}
-                onError={() => setLightImageFailed(true)}
-              />
-            ) : null}
           </>
         ) : (
           <ProjectMockup title={project.title} type={project.type} compact={compact} />

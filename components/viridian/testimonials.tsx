@@ -1,32 +1,83 @@
-import { MessageSquareQuote, ShieldCheck } from "lucide-react"
+"use client"
+
+import { useEffect, useMemo, useState } from "react"
+import { Star, ShieldCheck } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { SectionStarfield } from "./section-starfield"
 
 type Testimonial = {
   name: string
+  company: string
   role: string
-  category: string
+  solution: string
   quote: string
-  source: string
-  relatedProject?: string
 }
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Dos Hermanas Agua",
-    role: "Cliente real",
-    category: "Sistema de gestión para reparto de agua",
+    name: "Sara",
+    company: "Dos Hermanas Agua",
+    role: "Cliente",
+    solution: "Sistema de gestión para reparto de agua",
     quote:
       "Estoy muy conforme con el programa que compré y con todo el acompañamiento brindado. ¡Excelente atención!",
-    source: "Comentario real en Instagram",
-    relatedProject: "Sistema para repartos y distribuidoras",
+  },
+  {
+    name: "Darien",
+    company: "Agüita",
+    role: "Cliente",
+    solution: "Sistema operativo para reparto y control de envases",
+    quote:
+      "Arranqué hace dos años. Todos me ofrecían control de stock y punto de venta, pero nadie me podía resolver lo de los envases en comodato. Muy recomendado.",
+  },
+  {
+    name: "Daniel Gómez",
+    company: "Blessed Soluciones Integrales",
+    role: "Cliente",
+    solution: "Presencia digital e infraestructura comercial",
+    quote:
+      "Viridian Core digitalizó mi empresa y estoy muy conforme con los resultados: correo corporativo, firma digital, una carpeta de presentación en PDF y una web que se adapta perfectamente a las operaciones de Blessed. Lo recomiendo.",
+  },
+  {
+    name: "Eduardo",
+    company: "Gestor Previsional",
+    role: "Cliente",
+    solution: "Sistema para gestión de trámites previsionales",
+    quote:
+      "Antes lo hacía todo en papel y perdía mucho tiempo. Hoy, con el gestor de trámites previsionales, lo tengo todo en un solo lugar: muy cómodo e intuitivo. Muchísimas gracias.",
   },
 ]
 
+const AUTOPLAY_MS = 3400
+const SWIPE_THRESHOLD = 44
+
 export function Testimonials() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+
+  const active = TESTIMONIALS[activeIndex]
+  const total = TESTIMONIALS.length
+
+  const next = useMemo(
+    () => () => setActiveIndex((current) => (current + 1) % total),
+    [total],
+  )
+
+  const previous = () =>
+    setActiveIndex((current) => (current - 1 + total) % total)
+
+  useEffect(() => {
+    if (paused || total <= 1) return
+
+    const interval = window.setInterval(next, AUTOPLAY_MS)
+    return () => window.clearInterval(interval)
+  }, [next, paused, total])
+
   return (
     <section
       id="validacion"
-      className="relative overflow-hidden border-t border-border/50 bg-background py-20 md:py-28"
+      className="relative overflow-hidden border-t border-border/50 bg-background py-24 md:py-32"
     >
       <SectionStarfield variant="services" />
 
@@ -36,83 +87,99 @@ export function Testimonials() {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
-              / 003 — Validación real
-            </span>
-            <h2 className="mt-4 text-balance text-3xl font-medium leading-[1.1] tracking-tight text-foreground md:text-5xl">
-              Señales concretas de <span className="text-viridian">clientes reales</span>
-            </h2>
-            <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-foreground/65">
-              Además de mostrar sistemas reales, sumamos señales de confianza concretas de quienes ya trabajaron con Viridian Core.
-            </p>
-          </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-viridian">
+            / 003 — Validación de clientes
+          </span>
+          <h2 className="mt-4 text-balance text-3xl font-medium leading-[1.1] tracking-tight text-foreground md:text-5xl">
+            Lo que dicen quienes ya trabajan con{" "}
+            <span className="text-viridian">Viridian Core</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-foreground/65 md:text-lg">
+            Además de desarrollar sistemas y plataformas reales, Viridian Core ya cuenta con validaciones concretas de clientes que utilizaron estas soluciones en contextos reales.
+          </p>
+        </div>
 
-          <div className="grid gap-5 lg:col-span-7 md:grid-cols-2">
-            {TESTIMONIALS.map((testimonial) => (
-              <article
-                key={`${testimonial.name}-${testimonial.category}`}
-                className="group relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-lg border border-border/60 bg-card/80 p-6 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.9)] transition-all duration-300 hover:border-viridian/45 hover:bg-card/90 md:p-7"
-              >
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-[0.24] [background-image:radial-gradient(color-mix(in_oklch,var(--viridian)_18%,transparent)_1px,transparent_1px)] [background-size:22px_22px]"
-                  aria-hidden="true"
-                />
-                <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-viridian/60 to-transparent"
-                  aria-hidden="true"
-                />
+        <div
+          className="mx-auto mt-12 max-w-4xl"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={(event) => setTouchStart(event.touches[0]?.clientX ?? null)}
+          onTouchEnd={(event) => {
+            if (touchStart === null) return
+            const distance = touchStart - (event.changedTouches[0]?.clientX ?? touchStart)
+            if (Math.abs(distance) >= SWIPE_THRESHOLD) {
+              if (distance > 0) next()
+              else previous()
+            }
+            setTouchStart(null)
+          }}
+        >
+          <article className="relative min-h-[390px] overflow-hidden rounded-xl border border-viridian/20 bg-card/85 p-7 shadow-[0_34px_100px_-72px_var(--viridian)] backdrop-blur-md transition-all duration-500 md:min-h-[360px] md:p-10">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.24] [background-image:radial-gradient(color-mix(in_oklch,var(--viridian)_18%,transparent)_1px,transparent_1px)] [background-size:22px_22px]"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-viridian/70 to-transparent"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_80%_at_100%_0%,color-mix(in_oklch,var(--viridian)_18%,transparent)_0%,transparent_58%)]"
+              aria-hidden="true"
+            />
 
-                <div className="relative">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-viridian/35 bg-background/55 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-viridian">
-                      <ShieldCheck className="h-3.5 w-3.5" />
-                      {testimonial.role}
-                    </span>
-                    <span className="rounded-full border border-border/70 bg-background/45 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-foreground/60">
-                      Validación real
-                    </span>
+            <div className="relative flex h-full flex-col justify-between gap-8">
+              <div>
+                <div className="flex items-center justify-between gap-4">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-viridian/35 bg-background/55 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-viridian backdrop-blur-md">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    Cliente verificado
+                  </span>
+                  <div className="inline-flex items-center gap-1.5 text-viridian/85" aria-label="Valoración positiva">
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <Star key={index} className="h-4 w-4 fill-current" />
+                    ))}
                   </div>
+                </div>
 
-                  <MessageSquareQuote className="mt-8 h-7 w-7 text-viridian/80" aria-hidden="true" />
-                  <blockquote className="mt-5 text-pretty text-xl font-medium leading-snug tracking-tight text-foreground md:text-2xl">
-                    “{testimonial.quote}”
+                <div className="mt-10 transition-all duration-500" key={activeIndex}>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/45">
+                    {active.solution}
+                  </p>
+                  <blockquote className="mt-5 text-pretty text-2xl font-medium leading-snug tracking-tight text-foreground md:text-4xl">
+                    “{active.quote}”
                   </blockquote>
                 </div>
+              </div>
 
-                <div className="relative mt-8 border-t border-border/55 pt-5">
-                  <h3 className="text-base font-medium tracking-tight text-foreground">
-                    {testimonial.name}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-foreground/62">
-                    {testimonial.category}
-                  </p>
-                  {testimonial.relatedProject ? (
-                    <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/42">
-                      Proyecto relacionado: {testimonial.relatedProject}
-                    </p>
-                  ) : null}
-                  <p className="mt-3 text-xs uppercase tracking-[0.16em] text-viridian/75">
-                    {testimonial.source}
-                  </p>
-                </div>
-              </article>
-            ))}
-
-            <div className="relative flex min-h-[260px] flex-col justify-between rounded-lg border border-dashed border-border/70 bg-card/35 p-6 md:p-7">
-              <div>
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/45">
-                  Próximas validaciones
-                </span>
-                <p className="mt-4 text-pretty text-lg font-medium leading-snug text-foreground/80">
-                  La estructura queda lista para sumar nuevos comentarios reales, por ejemplo Agüita u otros clientes implementados.
+              <div className="relative border-t border-border/55 pt-6">
+                <p className="text-lg font-medium tracking-tight text-foreground">
+                  {active.name}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-foreground/62 md:text-base">
+                  {active.company} · {active.role}
                 </p>
               </div>
-              <p className="mt-8 text-sm leading-relaxed text-foreground/55">
-                Cada testimonio debe mantener el mismo criterio: cliente real, proyecto concreto y texto verificable, sin métricas ni promesas infladas.
-              </p>
             </div>
+          </article>
+
+          <div className="mt-6 flex items-center justify-center gap-2" aria-label="Indicadores de testimonios">
+            {TESTIMONIALS.map((testimonial, index) => (
+              <button
+                key={`${testimonial.name}-${testimonial.company}`}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                className={cn(
+                  "h-2.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian",
+                  index === activeIndex
+                    ? "w-8 bg-viridian shadow-[0_0_18px_-6px_var(--viridian)]"
+                    : "w-2.5 bg-foreground/22 hover:bg-foreground/38",
+                )}
+                aria-label={`Ver testimonio de ${testimonial.name}`}
+                aria-current={index === activeIndex ? "true" : undefined}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -995,29 +995,10 @@ button {
   }
 }
 
-.project-image-light {
-  display: none;
-}
-
-.light .project-image-dark-with-light {
-  display: none;
-}
-
-.light .project-image-light {
-  display: block;
-  opacity: 0.96;
-}
-
-.project-image-dark,
-.project-image-light {
+.project-image-dark {
   filter: drop-shadow(0 22px 44px color-mix(in oklch, black 34%, transparent));
 }
 
-.light .project-image-dark,
-.light .project-image-light {
+.light .project-image-dark {
   filter: drop-shadow(0 24px 46px oklch(0.35 0.04 224 / 0.18));
-}
-
-.light .project-image-light + * {
-  border-color: color-mix(in oklch, var(--border) 72%, transparent);
 }
