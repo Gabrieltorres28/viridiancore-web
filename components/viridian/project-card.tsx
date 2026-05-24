@@ -33,7 +33,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
   return (
     <article
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-lg border border-border/60 bg-card/85 shadow-[0_24px_80px_-56px_rgba(0,0,0,0.9)] transition-all duration-300 hover:-translate-y-1 hover:border-viridian/45 hover:shadow-[0_32px_96px_-64px_var(--viridian)]",
+        "group relative flex h-full flex-col overflow-hidden rounded-lg border border-border/60 bg-card/85 shadow-[0_24px_80px_-56px_rgba(0,0,0,0.9)] transition-[background-color,border-color,box-shadow,transform] duration-300 md:hover:-translate-y-1 md:hover:border-viridian/45 md:hover:shadow-[0_32px_96px_-64px_var(--viridian)]",
         compact && "bg-card/70",
         project.featured && "lg:col-span-2",
       )}
@@ -61,7 +61,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
               fill
               sizes={project.featured ? "(min-width: 1280px) 1180px, (min-width: 1024px) 92vw, 100vw" : compact ? "(min-width: 1024px) 33vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
               className={cn(
-                "project-image-dark opacity-92 transition duration-500 group-hover:scale-[1.015] group-hover:opacity-100",
+                "project-image-dark opacity-92 transition-[opacity,transform] duration-300 md:group-hover:scale-[1.015] md:group-hover:opacity-100",
                 project.imageFit === "contain" ? "object-contain p-3 md:p-5" : "object-cover",
               )}
               onError={() => setImageFailed(true)}
@@ -76,7 +76,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
             <span
               key={tag}
               className={cn(
-                "rounded-full border bg-background/70 px-3 py-1 text-[11px] uppercase tracking-[0.18em] backdrop-blur-md",
+                "rounded-full border bg-background/70 px-3 py-1 text-[11px] uppercase tracking-[0.18em] md:backdrop-blur-md",
                 index === 0
                   ? "border-viridian/35 font-medium text-viridian"
                   : "border-border/70 text-foreground/70",
@@ -126,7 +126,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
             href={project.href}
             target={project.href.startsWith("http") ? "_blank" : undefined}
             rel={project.href.startsWith("http") ? "noreferrer" : undefined}
-            className="group/cta inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-viridian px-5 py-3 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_28px_-8px_var(--viridian)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian sm:w-auto"
+            className="group/cta inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-viridian px-5 py-3 text-sm font-medium text-primary-foreground transition-[background-color,box-shadow] hover:bg-viridian/90 md:hover:shadow-[0_0_28px_-8px_var(--viridian)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian sm:w-auto"
           >
             {project.cta}
             {project.href.startsWith("http") ? (
@@ -152,7 +152,7 @@ function ProjectMockup({ title, type, compact }: { title: string; type: string; 
         className="absolute inset-0 [background-image:linear-gradient(to_right,color-mix(in_oklch,var(--border)_70%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklch,var(--border)_70%,transparent)_1px,transparent_1px)] [background-size:42px_42px] opacity-45"
         aria-hidden="true"
       />
-      <div className={cn("relative w-[82%] rounded-lg border border-border/70 bg-card/70 p-4 shadow-2xl backdrop-blur-sm", compact ? "max-w-sm" : "max-w-md")}>
+      <div className={cn("relative w-[82%] rounded-lg border border-border/70 bg-card/70 p-4 shadow-lg md:shadow-2xl md:backdrop-blur-sm", compact ? "max-w-sm" : "max-w-md")}>
         <div className="flex items-center justify-between border-b border-border/60 pb-3">
           <div className="flex gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-viridian/80" />

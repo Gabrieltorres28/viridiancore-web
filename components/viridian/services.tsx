@@ -75,7 +75,7 @@ export function Services() {
                 className="group relative flex flex-col justify-between gap-10 bg-card p-8 transition-colors duration-500 hover:bg-card/70 md:p-10"
               >
                 <span
-                  className="pointer-events-none absolute left-0 top-0 h-px w-0 bg-viridian transition-all duration-500 group-hover:w-full"
+                  className="pointer-events-none absolute left-0 top-0 h-px w-0 bg-viridian transition-[width] duration-500 group-hover:w-full"
                   aria-hidden="true"
                 />
 

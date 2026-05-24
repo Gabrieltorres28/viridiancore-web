@@ -45,7 +45,7 @@ export function FinalCta() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-7 py-4 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_36px_-8px_var(--viridian)]"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-7 py-4 text-sm font-medium text-primary-foreground transition-[background-color,box-shadow] hover:bg-viridian/90 md:hover:shadow-[0_0_36px_-8px_var(--viridian)]"
               >
                 <MessageCircle className="h-4 w-4" />
                 Hablar por WhatsApp

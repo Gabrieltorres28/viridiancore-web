@@ -1,18 +1,25 @@
 "use client"
 
-import { useEffect, useState, type CSSProperties } from "react"
+import { useEffect, useRef } from "react"
 import Image from "next/image"
 
 export function DaylightBackdrop() {
-  const [offset, setOffset] = useState(0)
+  const backdropRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const mobile = window.matchMedia("(max-width: 767px)")
     let frame = 0
 
     const update = () => {
+      if (reduceMotion.matches || mobile.matches) return
+
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => {
-        setOffset(Math.min(window.scrollY * 0.035, 46))
+        backdropRef.current?.style.setProperty(
+          "--daylight-parallax",
+          `${Math.min(window.scrollY * 0.035, 46)}px`,
+        )
       })
     }
 
@@ -25,18 +32,13 @@ export function DaylightBackdrop() {
   }, [])
 
   return (
-    <div
-      className="daylight-backdrop"
-      style={{ "--daylight-parallax": `${offset}px` } as CSSProperties}
-      aria-hidden="true"
-    >
+    <div ref={backdropRef} className="daylight-backdrop" aria-hidden="true">
       <div className="daylight-sky" />
       <div className="daylight-image-layer">
         <Image
-          src="/images/logo-fondo-claro.png"
+          src="/images/logo-fondo-claro.webp"
           alt=""
           fill
-          priority
           sizes="100vw"
           className="daylight-image"
         />

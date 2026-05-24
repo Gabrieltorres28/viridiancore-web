@@ -37,9 +37,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
         scrolled
-          ? "backdrop-blur-md bg-background/70 border-b border-border/60"
+          ? "md:backdrop-blur-md bg-background/70 border-b border-border/60"
           : "bg-transparent border-b border-transparent",
       )}
     >
@@ -86,7 +86,7 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={cn(
-          "md:hidden overflow-hidden border-b border-border/60 bg-background/95 backdrop-blur-xl transition-[max-height,opacity] duration-500",
+          "md:hidden overflow-hidden border-b border-border/60 bg-background/95 md:backdrop-blur-xl transition-[max-height,opacity] duration-500",
           open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0",
         )}
       >

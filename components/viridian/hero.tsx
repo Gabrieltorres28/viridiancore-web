@@ -19,7 +19,7 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-32 pb-20 md:px-10 md:pt-40 md:pb-28">
-        <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-border/60 bg-card/30 px-4 py-1.5 backdrop-blur-sm">
+        <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-border/60 bg-card/30 px-4 py-1.5 md:backdrop-blur-sm">
           <span className="h-1.5 w-1.5 rounded-full bg-viridian shadow-[0_0_12px_var(--viridian)]" />
           <span className="text-xs font-medium uppercase tracking-[0.22em] text-foreground/80">
             Software operativo para empresas
@@ -38,7 +38,7 @@ export function Hero() {
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <a
             href="#proyectos"
-            className="group inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-6 py-3.5 text-sm font-medium text-primary-foreground transition-all hover:bg-viridian/90 hover:shadow-[0_0_32px_-8px_var(--viridian)]"
+            className="group inline-flex items-center justify-center gap-2 rounded-md bg-viridian px-6 py-3.5 text-sm font-medium text-primary-foreground transition-[background-color,box-shadow] hover:bg-viridian/90 md:hover:shadow-[0_0_32px_-8px_var(--viridian)]"
           >
             Ver proyectos
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -47,7 +47,7 @@ export function Hero() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex items-center justify-center gap-2 rounded-md border border-border/70 bg-card/40 px-6 py-3.5 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-viridian/50 hover:bg-card/60"
+            className="group inline-flex items-center justify-center gap-2 rounded-md border border-border/70 bg-card/40 px-6 py-3.5 text-sm font-medium text-foreground md:backdrop-blur-sm transition-[background-color,border-color] hover:border-viridian/50 hover:bg-card/60"
           >
             <MessageCircle className="h-4 w-4 text-viridian" />
             Hablar por WhatsApp

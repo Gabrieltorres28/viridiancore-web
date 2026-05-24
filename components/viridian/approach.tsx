@@ -66,7 +66,7 @@ export function Approach() {
               {BULLETS.map((b) => (
                 <li
                   key={b}
-                  className="flex items-center gap-3 rounded-md border border-border/60 bg-card/40 px-4 py-3 text-sm text-foreground/85 backdrop-blur-sm"
+                  className="flex items-center gap-3 rounded-md border border-border/60 bg-card/40 px-4 py-3 text-sm text-foreground/85 md:backdrop-blur-sm"
                 >
                   <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-viridian/40 bg-viridian/10 text-viridian">
                     <Check className="h-3 w-3" strokeWidth={3} />
@@ -105,7 +105,7 @@ export function Approach() {
                     {WORKFLOW.map((row) => (
                       <div
                         key={row.index}
-                        className="grid grid-cols-[2.25rem_1fr] gap-4 rounded-md border border-border/55 bg-background/35 px-4 py-3.5 backdrop-blur-sm transition-colors hover:border-viridian/30 hover:bg-background/45"
+                        className="grid grid-cols-[2.25rem_1fr] gap-4 rounded-md border border-border/55 bg-background/35 px-4 py-3.5 md:backdrop-blur-sm transition-colors hover:border-viridian/30 hover:bg-background/45"
                       >
                         <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-viridian">
                           {row.index}

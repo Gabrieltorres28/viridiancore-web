@@ -15,7 +15,7 @@ const MANAGEMENT_PROJECTS: Project[] = [
     description:
       "Sistema operativo real para distribuidoras y repartos, orientado a gestionar clientes, entregas, deudas, stock, movimientos y operaciones diarias desde una herramienta centralizada.",
     image: {
-      src: "/images/sistema-reparto.png",
+      src: "/images/sistema-reparto.webp",
       alt: "Sistema para repartos y distribuidoras desarrollado por Viridian Core",
     },
     imageFit: "contain",
@@ -42,7 +42,7 @@ const MANAGEMENT_PROJECTS: Project[] = [
     description:
       "Solución adaptada a un negocio real, orientada a reemplazar cuadernos, WhatsApp desordenado y planillas dispersas por una herramienta centralizada para operar mejor.",
     image: {
-      src: "/images/sistema-pyme-imagen.png",
+      src: "/images/sistema-pyme-imagen.webp",
       alt: "Sistema operativo para PyME local desarrollado por Viridian Core",
     },
     imageFit: "contain",
@@ -68,11 +68,11 @@ const INSTITUTIONAL_PROJECTS: Project[] = [
     category: "institutional",
     type: "Presencia digital empresarial",
     status: "Publicado",
-    badge: "Proyecto vendido",
+    badge: "Proyecto publicado",
     description:
       "Sitio institucional profesional para empresa de servicios industriales, pensado para mejorar presentación comercial, confianza y presencia online.",
     image: {
-      src: "/images/logo-blessed.png",
+      src: "/images/logo-blessed.webp",
       alt: "Logo de Blessed Soluciones Integrales",
     },
     imageFit: "contain",
@@ -96,7 +96,7 @@ const INSTITUTIONAL_PROJECTS: Project[] = [
     description:
       "Web institucional para entidad educativa, desarrollada para ordenar información pública, mejorar presencia digital y comunicar de forma profesional.",
     image: {
-      src: "/images/logo-isipp.png",
+      src: "/images/logo-isipp.webp",
       alt: "Logo de ISIPP",
     },
     imageFit: "contain",
@@ -120,7 +120,7 @@ const INSTITUTIONAL_PROJECTS: Project[] = [
     description:
       "Portal institucional orientado a comunicación pública, presencia digital territorial y validación de soluciones digitales para municipios.",
     image: {
-      src: "/images/logoalcazar.png",
+      src: "/images/logoalcazar.webp",
       alt: "Logo de la Municipalidad de El Alcázar",
     },
     imageFit: "contain",

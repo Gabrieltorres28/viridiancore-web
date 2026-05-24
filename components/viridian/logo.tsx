@@ -23,7 +23,7 @@ export function Logo({ className, size = 36 }: LogoProps) {
   return (
     <span
       className={cn(
-        "relative inline-flex items-center justify-center overflow-hidden rounded-md border border-border/70 bg-card/50 backdrop-blur-sm",
+        "relative inline-flex items-center justify-center overflow-hidden rounded-md border border-border/70 bg-card/50 md:backdrop-blur-sm",
         className,
       )}
       style={{ width: size, height: size }}

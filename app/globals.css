@@ -1002,3 +1002,105 @@ button {
 .light .project-image-dark {
   filter: drop-shadow(0 24px 46px oklch(0.35 0.04 224 / 0.18));
 }
+
+@keyframes loader-line {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(180%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html,
+  body,
+  main,
+  main > section,
+  footer,
+  article,
+  a,
+  button {
+    transition:
+      background-color 220ms ease,
+      border-color 220ms ease,
+      color 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .light .daylight-image-layer {
+    inset: -4% -22% -14%;
+    opacity: 0.34;
+    filter: none;
+    transform: translate3d(0, 0, 0) scale(1.02);
+    transition: opacity 220ms ease;
+  }
+
+  .light .daylight-image-wash {
+    opacity: 0.72;
+    transition: opacity 220ms ease;
+  }
+
+  .light .daylight-terrain {
+    filter: none;
+    opacity: 0.28;
+  }
+
+  .light .daylight-grid,
+  .light .daylight-nodes {
+    opacity: 0.18;
+    animation: none;
+  }
+
+  .light main > section,
+  .light footer {
+    backdrop-filter: none;
+  }
+
+  .light .bg-card,
+  .light .bg-card\/80,
+  .light .bg-card\/85,
+  .light .bg-card\/70,
+  .light .bg-card\/55,
+  .light .bg-card\/50,
+  .light .bg-card\/40,
+  .light .bg-card\/35,
+  .light .bg-card\/30 {
+    background-color: color-mix(in oklch, var(--background) 90%, white 8%) !important;
+    backdrop-filter: none;
+  }
+
+  .light article,
+  .light .shadow-2xl,
+  .light .shadow-lg {
+    box-shadow: 0 18px 48px -40px oklch(0.34 0.055 224 / 0.32);
+  }
+
+  .light .hero-video-glow {
+    filter: none;
+    opacity: 0.32;
+  }
+
+  .starfield-star,
+  .starfield-bright-star,
+  .starfield-bright-star::before,
+  .starfield-bright-star::after,
+  .starfield-shooting-star,
+  .daylight-nodes {
+    animation: none !important;
+  }
+}

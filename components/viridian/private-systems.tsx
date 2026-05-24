@@ -114,7 +114,7 @@ export function PrivateSystems() {
               <article
                 key={pack.name}
                 className={cn(
-                  "group relative flex h-full flex-col overflow-hidden rounded-lg border bg-card/80 p-6 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.9)] transition-all duration-300 hover:-translate-y-1 md:p-7",
+                  "group relative flex h-full flex-col overflow-hidden rounded-lg border bg-card/80 p-6 shadow-[0_24px_80px_-60px_rgba(0,0,0,0.9)] transition-[background-color,border-color,box-shadow,transform] duration-300 md:hover:-translate-y-1 md:p-7",
                   pack.highlighted
                     ? "border-viridian/45 shadow-[0_34px_100px_-72px_var(--viridian)] lg:scale-[1.03]"
                     : "border-border/60 hover:border-viridian/35",
@@ -183,7 +183,7 @@ export function PrivateSystems() {
                       target="_blank"
                       rel="noreferrer"
                       className={cn(
-                        "group/cta inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian",
+                        "group/cta inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-medium transition-[background-color,box-shadow,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian",
                         pack.highlighted
                           ? "bg-viridian text-primary-foreground hover:bg-viridian/90 hover:shadow-[0_0_28px_-8px_var(--viridian)]"
                           : "border border-border/70 bg-background/45 text-foreground hover:border-viridian/45 hover:text-viridian",

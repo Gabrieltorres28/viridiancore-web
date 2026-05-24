@@ -56,7 +56,6 @@ export function Testimonials() {
   const [paused, setPaused] = useState(false)
   const [touchStart, setTouchStart] = useState<number | null>(null)
 
-  const active = TESTIMONIALS[activeIndex]
   const total = TESTIMONIALS.length
 
   const next = useMemo(
@@ -115,9 +114,9 @@ export function Testimonials() {
             setTouchStart(null)
           }}
         >
-          <article className="relative min-h-[390px] overflow-hidden rounded-xl border border-viridian/20 bg-card/85 p-7 shadow-[0_34px_100px_-72px_var(--viridian)] backdrop-blur-md transition-all duration-500 md:min-h-[360px] md:p-10">
+          <article className="relative min-h-[640px] overflow-hidden rounded-xl border border-viridian/20 bg-card/85 p-7 shadow-[0_22px_58px_-46px_var(--viridian)] transition-[background-color,border-color,box-shadow] duration-300 md:min-h-[450px] md:p-10 md:shadow-[0_34px_100px_-72px_var(--viridian)] md:backdrop-blur-md">
             <div
-              className="pointer-events-none absolute inset-0 opacity-[0.24] [background-image:radial-gradient(color-mix(in_oklch,var(--viridian)_18%,transparent)_1px,transparent_1px)] [background-size:22px_22px]"
+              className="pointer-events-none absolute inset-0 opacity-[0.16] [background-image:radial-gradient(color-mix(in_oklch,var(--viridian)_18%,transparent)_1px,transparent_1px)] [background-size:22px_22px] md:opacity-[0.24]"
               aria-hidden="true"
             />
             <div
@@ -125,14 +124,14 @@ export function Testimonials() {
               aria-hidden="true"
             />
             <div
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_80%_at_100%_0%,color-mix(in_oklch,var(--viridian)_18%,transparent)_0%,transparent_58%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_80%_at_100%_0%,color-mix(in_oklch,var(--viridian)_12%,transparent)_0%,transparent_58%)] md:bg-[radial-gradient(70%_80%_at_100%_0%,color-mix(in_oklch,var(--viridian)_18%,transparent)_0%,transparent_58%)]"
               aria-hidden="true"
             />
 
-            <div className="relative flex h-full flex-col justify-between gap-8">
+            <div className="relative flex min-h-[586px] flex-col justify-between gap-8 md:min-h-[370px]">
               <div>
                 <div className="flex items-center justify-between gap-4">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-viridian/35 bg-background/55 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-viridian backdrop-blur-md">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-viridian/35 bg-background/55 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-viridian md:backdrop-blur-md">
                     <ShieldCheck className="h-3.5 w-3.5" />
                     Cliente verificado
                   </span>
@@ -143,23 +142,47 @@ export function Testimonials() {
                   </div>
                 </div>
 
-                <div className="mt-10 transition-all duration-500" key={activeIndex}>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/45">
-                    {active.solution}
-                  </p>
-                  <blockquote className="mt-5 text-pretty text-2xl font-medium leading-snug tracking-tight text-foreground md:text-4xl">
-                    “{active.quote}”
-                  </blockquote>
+                <div className="relative mt-10 min-h-[380px] md:min-h-[210px]">
+                  {TESTIMONIALS.map((testimonial, index) => (
+                    <div
+                      key={`${testimonial.name}-${testimonial.company}`}
+                      className={cn(
+                        "absolute inset-0 transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+                        index === activeIndex
+                          ? "translate-y-0 opacity-100"
+                          : "pointer-events-none translate-y-1 opacity-0",
+                      )}
+                      aria-hidden={index !== activeIndex}
+                    >
+                      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/45">
+                        {testimonial.solution}
+                      </p>
+                      <blockquote className="mt-5 text-pretty text-2xl font-medium leading-snug tracking-tight text-foreground md:text-4xl">
+                        “{testimonial.quote}”
+                      </blockquote>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="relative border-t border-border/55 pt-6">
-                <p className="text-lg font-medium tracking-tight text-foreground">
-                  {active.name}
-                </p>
-                <p className="mt-1 text-sm leading-relaxed text-foreground/62 md:text-base">
-                  {active.company} · {active.role}
-                </p>
+              <div className="relative min-h-[78px] border-t border-border/55 pt-6">
+                {TESTIMONIALS.map((testimonial, index) => (
+                  <div
+                    key={`${testimonial.name}-${testimonial.company}-meta`}
+                    className={cn(
+                      "absolute inset-x-0 top-6 transition-opacity duration-300 motion-reduce:transition-none",
+                      index === activeIndex ? "opacity-100" : "pointer-events-none opacity-0",
+                    )}
+                    aria-hidden={index !== activeIndex}
+                  >
+                    <p className="text-lg font-medium tracking-tight text-foreground">
+                      {testimonial.name}
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-foreground/62 md:text-base">
+                      {testimonial.company} · {testimonial.role}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </article>
@@ -171,7 +194,7 @@ export function Testimonials() {
                 type="button"
                 onClick={() => setActiveIndex(index)}
                 className={cn(
-                  "h-2.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian",
+                  "h-2.5 rounded-full transition-[width,background-color,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-viridian motion-reduce:transition-none",
                   index === activeIndex
                     ? "w-8 bg-viridian shadow-[0_0_18px_-6px_var(--viridian)]"
                     : "w-2.5 bg-foreground/22 hover:bg-foreground/38",

@@ -10,7 +10,7 @@ export function BrandLogo({ className, priority = false }: BrandLogoProps) {
   return (
     <span className={cn("relative block", className)}>
       <Image
-        src="/images/logo-oficial-header-crop.png"
+        src="/images/logo-oficial-header-crop.webp"
         alt="Viridian Core"
         width={1005}
         height={274}

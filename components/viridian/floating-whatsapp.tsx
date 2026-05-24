@@ -13,11 +13,11 @@ export function FloatingWhatsapp() {
       className="group fixed bottom-5 right-5 z-50 inline-flex h-16 w-16 items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 hover:scale-105 md:bottom-7 md:right-7 md:h-20 md:w-20"
     >
       <span
-        className="absolute inset-1 rounded-full bg-viridian/20 opacity-45 blur-xl transition-opacity duration-300 group-hover:opacity-70"
+        className="absolute inset-1 rounded-full bg-viridian/20 opacity-45 md:blur-xl transition-opacity duration-300 group-hover:opacity-70"
         aria-hidden="true"
       />
       <Image
-        src="/images/whatsaap-logo-crop.png"
+        src="/images/whatsaap-logo-crop.webp"
         alt=""
         width={394}
         height={363}

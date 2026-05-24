@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { FloatingWhatsapp } from "@/components/viridian/floating-whatsapp"
+import { InitialLoader } from "@/components/initial-loader"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
@@ -112,6 +113,7 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="viridian-theme"
         >
+          <InitialLoader />
           {children}
           <FloatingWhatsapp />
           {process.env.NODE_ENV === "production" && <Analytics />}
