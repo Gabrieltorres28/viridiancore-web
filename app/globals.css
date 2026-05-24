@@ -1104,3 +1104,29 @@ button {
     animation: none !important;
   }
 }
+
+@media (max-width: 767px) {
+  html {
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+
+.light footer {
+  background-color: var(--background) !important;
+  color: var(--foreground);
+}
+
+.light footer::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, color-mix(in oklch, var(--background) 88%, white 6%), var(--background)),
+    radial-gradient(60% 45% at 50% 0%, color-mix(in oklch, var(--viridian) 8%, transparent), transparent 70%);
+  content: "";
+}

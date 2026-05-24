@@ -11,7 +11,7 @@ import { DaylightBackdrop } from "@/components/viridian/daylight-backdrop"
 
 export default function Page() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <DaylightBackdrop />
       <Navbar />
       <Hero />

@@ -10,10 +10,10 @@ const MANAGEMENT_PROJECTS: Project[] = [
     title: "Sistema para repartos y distribuidoras",
     category: "system",
     type: "Solución vertical especializada",
-    status: "Implementado en cliente real",
-    badge: "Sistema vendido",
+    status: "En producción",
+    badge: "Sistema funcionando",
     description:
-      "Sistema operativo real para distribuidoras y repartos, orientado a gestionar clientes, entregas, deudas, stock, movimientos y operaciones diarias desde una herramienta centralizada.",
+      "Solución adaptada a un negocio real, orientada a reemplazar cuadernos, WhatsApp desordenado y planillas dispersas por una herramienta centralizada para operar mejor.",
     image: {
       src: "/images/sistema-reparto.webp",
       alt: "Sistema para repartos y distribuidoras desarrollado por Viridian Core",
@@ -37,8 +37,8 @@ const MANAGEMENT_PROJECTS: Project[] = [
     title: "Sistema operativo para PyME local",
     category: "system",
     type: "Herramienta interna a medida",
-    status: "Cliente real",
-    badge: "Sistema vendido",
+    status: "En producción",
+    badge: "Sistema funcionando",
     description:
       "Solución adaptada a un negocio real, orientada a reemplazar cuadernos, WhatsApp desordenado y planillas dispersas por una herramienta centralizada para operar mejor.",
     image: {
