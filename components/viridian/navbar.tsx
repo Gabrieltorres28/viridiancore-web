@@ -9,6 +9,7 @@ import { ThemeToggle } from "./theme-toggle"
 
 const NAV_LINKS = [
   { href: "#inicio", label: "Inicio" },
+  { href: "#founder", label: "Sobre el fundador" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#validacion", label: "Validación" },
   { href: "#que-hacemos", label: "Qué hacemos" },
@@ -53,7 +54,7 @@ export function Navbar() {
         </Link>
 
         <nav
-          className="hidden items-center gap-1 md:flex"
+          className="hidden items-center gap-1 xl:flex"
           aria-label="Navegación principal"
         >
           {NAV_LINKS.map((link) => (
@@ -68,7 +69,7 @@ export function Navbar() {
           <ThemeToggle />
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -86,7 +87,7 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={cn(
-          "md:hidden overflow-hidden border-b border-border/60 bg-background/95 md:backdrop-blur-xl transition-[max-height,opacity] duration-500",
+          "overflow-hidden border-b border-border/60 bg-background/95 transition-[max-height,opacity] duration-500 md:backdrop-blur-xl xl:hidden",
           open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0",
         )}
       >

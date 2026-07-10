@@ -8,6 +8,7 @@ import { PrivateSystems } from "@/components/viridian/private-systems"
 import { FinalCta } from "@/components/viridian/final-cta"
 import { Footer } from "@/components/viridian/footer"
 import { DaylightBackdrop } from "@/components/viridian/daylight-backdrop"
+import { FounderSection } from "@/components/viridian/founder-section"
 
 export default function Page() {
   return (
@@ -15,6 +16,7 @@ export default function Page() {
       <DaylightBackdrop />
       <Navbar />
       <Hero />
+      <FounderSection />
       <Projects />
       <Testimonials />
       <Services />
